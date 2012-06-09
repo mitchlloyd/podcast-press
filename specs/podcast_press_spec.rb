@@ -6,6 +6,7 @@ require './specs/spec_helpers'
 require 'podcast_press'
 
 FILENAME = './sandbox/test_file.mp3'
+MP3_FIXTURE = './specs/fixtures/sine.mp3'
 
 describe PodcastPress do
   include SpecHelpers
@@ -81,6 +82,12 @@ describe PodcastPress do
   describe "#size" do
     it "returns the size of the file" do
       PodcastPress.press!(@file.path).size.must_equal(File.size(@file.path))
+    end
+  end
+
+  describe "#runtime" do
+    it "returns the runtime of the file in an iTunes friendly format" do
+      PodcastPress.press!(MP3_FIXTURE).runtime.must_equal('00:00:01')
     end
   end
 

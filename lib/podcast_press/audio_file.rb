@@ -56,6 +56,22 @@ module PodcastPress
       File.size(@filename)
     end
 
+    # Return the length of play in a format that works with the
+    # itunes:duration RSS tag. Example for 3 minutes, 16 seconds:
+    #
+    #     00:03:16
+    #
+    def runtime
+      TagLib::MPEG::File.open(@filename) do |file|
+        t = file.audio_properties.length
+        mm, ss = t.divmod(60)
+        hh, mm = mm.divmod(60)
+        dd, hh = hh.divmod(24)
+
+        [hh, mm, ss].map{|t| "%02d" % t}.join(':')
+      end
+    end
+
 
     private
 
