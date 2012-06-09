@@ -1,6 +1,7 @@
 require 'taglib'
 require 'ostruct'
 require 'forwardable'
+require 'podcast_press/tag'
 
 module PodcastPress
   class AudioFile
@@ -16,11 +17,11 @@ module PodcastPress
       @params = OpenStruct.new(params)
 
       TagLib::MPEG::File.open(@filename) do |file|
-        tag = file.id3v2_tag
+        tag = Tag.new(file.id3v2_tag)
 
-        # Setting a nil values causes a segfaults and other errors in the talib library
-        tag.title = title if title
-        tag.track = episode_number if episode_number
+        tag.set_title(@params.title)
+        tag.set_track(@params.episode_number)
+        tag.set_artwork(@params.artwork)
 
         file.save
       end

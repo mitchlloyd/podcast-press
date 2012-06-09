@@ -45,4 +45,14 @@ describe PodcastPress do
       tag_assertion(@file.path, 'TRCK', '1')
     end
   end
+
+  describe "when #press! is called with artwork" do
+    before do
+      @episode = PodcastPress.press!(@file.path, artwork: './specs/fixtures/artwork.jpg')
+    end
+
+    it "embeds the artwork in the file" do
+      file_has_artwork_assertion(@file.path, './specs/fixtures/artwork.jpg')
+    end
+  end
 end
