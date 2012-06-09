@@ -1,0 +1,3 @@
+module PodcastPress
+  VERSION = "0.0.1"
+end

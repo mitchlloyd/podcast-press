@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    podcast_press (0.0.1)
+      taglib-ruby (~> 0.5.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    taglib-ruby (0.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  podcast_press!

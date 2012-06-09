@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'fileutils'
-require './podcast_press'
+require 'taglib'
+
+require 'podcast_press'
 
 FILENAME = '/tmp/test_file.mp3'
 
@@ -22,6 +24,12 @@ describe PodcastPress::AudioFile do
 
     it "returns the title when #episode_title is called" do
       @audio_file.episode_title.must_equal 'Sweet Episode'
+    end
+
+    it "sets the title ID3 tag to the given title" do
+      TagLib::FileRef.open(@file.path) do |file|
+        file.tag.title.must_equal 'Sweet Episode'
+      end
     end
   end
 end
