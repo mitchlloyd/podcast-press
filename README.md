@@ -16,16 +16,13 @@ Usage
 -----
 
 ```ruby
-file = PodcastPress::AudioFile.new('file_path', 'podcast_defaults.yaml')
-
-file.prep!({
+episode = PodcastPress.press!('file_path', {
   title: 'Getting Serious'
   episode_number: 1
   artwork: 'artwork_1200x1200.jpg'
 })
 
-file.ship!    # => upload to your provider of choice
-file.size     # => 1234567
-file.runtime  # => "54:08"
-file.url      # => "http://dl.dropbox.com/234jsdkfdjsf/my-podcast-001-getting-serious-001.mp3"
+episode.size     # => 1234567
+episode.runtime  # => "54:08"
+episode.url      # => "http://dl.dropbox.com/234jsdkfdjsf/my-podcast-001-getting-serious-001.mp3"
 ```
