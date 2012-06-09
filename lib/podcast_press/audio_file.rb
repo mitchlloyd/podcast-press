@@ -21,6 +21,7 @@ module PodcastPress
 
         tag.set_title(@params.title)
         tag.set_track(@params.episode_number)
+        tag.set_artist(@params.artist)
         tag.set_artwork(@params.artwork)
 
         file.save

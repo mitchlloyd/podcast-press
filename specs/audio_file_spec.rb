@@ -55,4 +55,14 @@ describe PodcastPress do
       file_has_artwork_assertion(@file.path, './specs/fixtures/artwork.jpg')
     end
   end
+
+  describe "when #press! is called with artist" do
+    before do
+      @episode = PodcastPress.press!(@file.path, artist: 'Britt Daniels')
+    end
+
+    it "embeds the artwork in the file" do
+      tag_assertion(@file.path, 'TPE1', 'Britt Daniels')
+    end
+  end
 end

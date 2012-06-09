@@ -2,7 +2,6 @@ require 'taglib'
 
 module PodcastPress
   # This class wraps the functionality of an ID3 tag from taglib-ruby
-
   class Tag
     def initialize(taglib_tag)
       @raw_tag = taglib_tag
@@ -29,6 +28,10 @@ module PodcastPress
 
     def set_track(track)
       @raw_tag.track = track if track
+    end
+
+    def set_artist(artist)
+      @raw_tag.artist = artist if artist
     end
   end
 end
