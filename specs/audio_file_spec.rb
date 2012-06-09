@@ -65,4 +65,22 @@ describe PodcastPress do
       tag_assertion(@file.path, 'TPE1', 'Britt Daniels')
     end
   end
+
+
+  describe "a file with existing ID3 tags" do
+    before do
+      PodcastPress.press!(@file.path, title: 'remove-title', artist: 'remove-artist')
+    end
+
+    describe "when #press! is called with {clear: true}" do
+      before do
+        @episode = PodcastPress.press!(@file.path, clear: true)
+      end
+
+      it "removes all of the tags from the file" do
+        tag_assertion(@file.path, 'TPE1', '')
+        tag_assertion(@file.path, 'TIT2', '')
+      end
+    end
+  end
 end

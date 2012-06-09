@@ -7,6 +7,14 @@ module PodcastPress
       @raw_tag = taglib_tag
     end
 
+    # This method clears all of the frame from an ID3 tag, but does
+    # not save the file.
+    def clear_frames
+      @raw_tag.frame_list.each do |frame|
+        @raw_tag.remove_frame(frame)
+      end
+    end
+
 
     # Setting a nil values causes a segfaults and other errors in the talib library
     # so we must be careful not to set nil values in tags in setter methods.

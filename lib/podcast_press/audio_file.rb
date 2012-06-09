@@ -13,11 +13,20 @@ module PodcastPress
       @filename = filename
     end
 
+    # This method uses a hash of params to set ID3 tags.
+    #
+    # If {clear: true} is passed, then both ID3v1 tags are removed
+    # (these reside on the last 128 bytes) as well as the ID3v2 frames.
+    #
     def tag!(params={})
       @params = OpenStruct.new(params)
 
+      remove_id3v1_data! if @params.clear
+
       TagLib::MPEG::File.open(@filename) do |file|
         tag = Tag.new(file.id3v2_tag)
+
+        tag.clear_frames if @params.clear
 
         tag.set_title(@params.title)
         tag.set_track(@params.episode_number)
@@ -34,6 +43,25 @@ module PodcastPress
       else
         @params.episode_number
       end
+    end
+
+
+    private
+
+    def remove_id3v1_data!
+      if has_id3v1_tag?
+        # Remove the last 128 bytes of the file.
+        new_file_length = File.size(@filename) - 128
+        File.truncate(@filename, new_file_length)
+      end
+    end
+
+    def has_id3v1_tag?
+      # Read the last 128 bytes of the file which may contain
+      # the id3 tag data.
+      file = File.new(@filename)
+      file.seek(-128,IO::SEEK_END)
+      file.read(3).unpack('A3').first == 'TAG'
     end
   end
 end
