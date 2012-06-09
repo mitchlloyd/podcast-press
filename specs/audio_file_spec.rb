@@ -1,29 +1,24 @@
 require 'minitest/autorun'
-require 'fileutils'
+require 'tempfile'
 require 'taglib'
 
 require 'podcast_press'
 
-FILENAME = '/tmp/test_file.mp3'
+FILENAME = './sandbox/test_file.mp3'
 
-describe PodcastPress::AudioFile do
-  before do
-    @file = File.new(FILENAME, 'w')
-    @audio_file = PodcastPress::AudioFile.new(FILENAME)
-  end
-
-  after do
-    @file.close
-    File.delete @file.path
-  end
-
-  describe "when #prep! is called with a title" do
+describe PodcastPress do
+  describe "when #press! is called with a title" do
     before do
-      @audio_file.prep!(title: 'Sweet Episode')
+      @file = File.new(FILENAME, 'w')
+      @episode = PodcastPress.press!(@file.path, title: 'Sweet Episode')
     end
 
-    it "returns the title when #episode_title is called" do
-      @audio_file.episode_title.must_equal 'Sweet Episode'
+    after do
+      File.delete(@file.path)
+    end
+
+    it "returns the title when #title is called" do
+      @episode.title.must_equal 'Sweet Episode'
     end
 
     it "sets the title ID3 tag to the given title" do
