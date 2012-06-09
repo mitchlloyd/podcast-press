@@ -6,7 +6,7 @@ You've mixed down your podcast, but you're not done. Podcast Press handles all t
   * Rename the file according to your convention
   * Tag the file with id3 tags for iTunes and other audio players
   * Embed your artwork into the file
-  * Upload your file to a host of your choice (e.g. S3, Dropbox)
+  * _Planned_ - Upload your file to a host of your choice (e.g. S3, Dropbox)
 
 
 **Development Status:** _Barely Started / Not Ready for Use_

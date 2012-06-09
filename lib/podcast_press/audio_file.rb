@@ -52,6 +52,10 @@ module PodcastPress
       end
     end
 
+    def size
+      File.size(@filename)
+    end
+
 
     private
 

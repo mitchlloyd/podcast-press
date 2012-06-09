@@ -78,6 +78,12 @@ describe PodcastPress do
     end
   end
 
+  describe "#size" do
+    it "returns the size of the file" do
+      PodcastPress.press!(@file.path).size.must_equal(File.size(@file.path))
+    end
+  end
+
 
   describe "a file with existing ID3 tags" do
     before do
