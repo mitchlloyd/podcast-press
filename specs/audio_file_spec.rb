@@ -2,11 +2,14 @@ require 'minitest/autorun'
 require 'tempfile'
 require 'taglib'
 
+require './specs/spec_helpers'
 require 'podcast_press'
 
 FILENAME = './sandbox/test_file.mp3'
 
 describe PodcastPress do
+  include SpecHelpers
+
   before do
     @file = File.new(FILENAME, 'w')
   end
@@ -25,9 +28,7 @@ describe PodcastPress do
     end
 
     it "sets the title ID3 tag to the given title" do
-      TagLib::FileRef.open(@file.path) do |file|
-        file.tag.title.must_equal 'Sweet Episode'
-      end
+      tag_assertion(@file.path, 'TIT2', 'Sweet Episode')
     end
   end
 
@@ -41,9 +42,7 @@ describe PodcastPress do
     end
 
     it "sets the track number tag" do
-      TagLib::FileRef.open(@file.path) do |file|
-          file.tag.track.must_equal 1
-      end
+      tag_assertion(@file.path, 'TRCK', '1')
     end
   end
 end
