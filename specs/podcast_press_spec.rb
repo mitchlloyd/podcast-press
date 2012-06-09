@@ -58,11 +58,11 @@ describe PodcastPress do
 
   describe "when #press! is called with artist" do
     before do
-      @episode = PodcastPress.press!(@file.path, artist: 'Britt Daniels')
+      @episode = PodcastPress.press!(@file.path, artist: 'Britt Daniel')
     end
 
     it "embeds the artwork in the file" do
-      tag_assertion(@file.path, 'TPE1', 'Britt Daniels')
+      tag_assertion(@file.path, 'TPE1', 'Britt Daniel')
     end
   end
 
