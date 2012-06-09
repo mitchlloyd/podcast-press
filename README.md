@@ -17,9 +17,10 @@ Usage
 
 ```ruby
 episode = PodcastPress.press!('file_path', {
-  title: 'Getting Serious'
+  title: '001: Getting Serious'
   episode_number: 1
   artwork: 'artwork_1200x1200.jpg'
+  filename: "My Podcast 001 - Getting Serious.mp3"
 })
 
 episode.size     # => 1234567

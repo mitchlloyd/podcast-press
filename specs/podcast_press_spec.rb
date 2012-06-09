@@ -66,6 +66,18 @@ describe PodcastPress do
     end
   end
 
+  describe "when #press! is called with filename" do
+    before do
+      @episode = PodcastPress.press!(@file.path, filename: 'new_file_name.mp3')
+    end
+
+    after { @file = File.new('./sandbox/new_file_name.mp3') }
+
+    it "renames the file" do
+      File.exist?('./sandbox/new_file_name.mp3').must_equal true
+    end
+  end
+
 
   describe "a file with existing ID3 tags" do
     before do
