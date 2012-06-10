@@ -1,8 +1,6 @@
 require 'podcast_press/audio_file'
 require 'podcast_press/config'
 
-CONFIG_FILE = './podcast_press_config.rb'
-
 module PodcastPress
   def self.press!(filename, params={})
     params = load_config.merge(params)

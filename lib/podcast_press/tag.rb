@@ -7,14 +7,6 @@ module PodcastPress
       @raw_tag = taglib_tag
     end
 
-    # This method clears all of the frame from an ID3 tag, but does
-    # not save the file.
-    def clear_frames
-      @raw_tag.frame_list.each do |frame|
-        @raw_tag.remove_frame(frame)
-      end
-    end
-
     def set_frames(params)
       set_title(params.title)
       set_track(params.episode_number)
