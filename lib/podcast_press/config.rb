@@ -27,6 +27,10 @@ module PodcastPress
       @store.merge!(setting)
     end
 
+    def get(setting)
+      @store[setting]
+    end
+
     def to_h
       @store
     end
