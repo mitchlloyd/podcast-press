@@ -1,11 +1,10 @@
 require 'minitest/autorun'
-require 'tempfile'
 require 'taglib'
 
 require './specs/spec_helpers'
 require 'podcast_press'
 
-SANDBOX = './specs/sandbox/'
+SANDBOX = './specs/sandbox'
 FILENAME = './specs/sandbox/test_file.mp3'
 MP3_FIXTURE = './specs/fixtures/sine.mp3'
 
@@ -45,6 +44,16 @@ describe PodcastPress do
 
     it "sets the track number tag" do
       tag_assertion(@file.path, 'TRCK', '1')
+    end
+  end
+
+  describe "when #press! is called with a string episode_number" do
+    before do
+      @episode = PodcastPress.press!(@file.path, episode_number: "002")
+    end
+
+    it "returns the episode_number as a normalized string" do
+      @episode.episode_number.must_equal '2'
     end
   end
 

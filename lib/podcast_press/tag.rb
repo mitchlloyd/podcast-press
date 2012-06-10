@@ -35,7 +35,7 @@ module PodcastPress
     end
 
     def set_track(track)
-      @raw_tag.track = track if track
+      @raw_tag.track = track.to_i if track
     end
 
     def set_artist(artist)
