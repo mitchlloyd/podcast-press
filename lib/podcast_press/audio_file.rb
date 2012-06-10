@@ -26,7 +26,7 @@ module PodcastPress
           file.strip(TagLib::MPEG::File::ID3v1)
         end
 
-        tag = Tag.new(file.id3v2_tag)
+        tag = Tag.new(file.id3v2_tag(true))
         tag.set_frames(@params)
         file.save
       end

@@ -6,6 +6,7 @@ module PodcastPress
   class Tag
     def initialize(taglib_tag)
       @raw_tag = taglib_tag
+      raise "taglib tag passed was nil. Quitting." unless @raw_tag
     end
 
     def set_frames(params)
