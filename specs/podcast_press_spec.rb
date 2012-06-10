@@ -103,6 +103,40 @@ describe PodcastPress do
     end
   end
 
+
+  ### Specs for setting dates ###
+
+  def expect_setting_dates_to_work(episode, path, date_input)
+    episode.date.must_equal date_input
+    tag_assertion(path, 'TDRL', '2012-06-10')
+    tag_assertion(path, 'TDRC', '2012')
+  end
+
+  describe "when #press! is called with a date string" do
+    before do
+      @date_string = '2012/06/10'
+      @episode = PodcastPress.press!(@file.path, date: @date_string)
+    end
+
+    it "sets dates correctly" do
+      expect_setting_dates_to_work(@episode, @file.path, @date_string)
+    end
+  end
+
+  describe "when #press! is called with a time object" do
+    before do
+      @time_object = Time.new(2012, 6, 10)
+      @episode = PodcastPress.press!(@file.path, date: @time_object)
+    end
+
+    it "sets dates correctly" do
+      expect_setting_dates_to_work(@episode, @file.path, @time_object)
+    end
+  end
+
+
+  ### Specs for getters on episodes ###
+
   describe "#size" do
     it "returns the size of the file" do
       PodcastPress.press!(@file.path).size.must_equal(File.size(@file.path))

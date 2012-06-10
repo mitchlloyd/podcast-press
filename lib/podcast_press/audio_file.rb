@@ -7,7 +7,7 @@ module PodcastPress
   class AudioFile
     extend Forwardable
 
-    def_delegators :@params, :title, :podcast_title
+    def_delegators :@params, :title, :podcast_title, :date
 
     def initialize(filename)
       @filename = filename

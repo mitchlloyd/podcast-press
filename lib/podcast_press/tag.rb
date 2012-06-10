@@ -1,4 +1,5 @@
 require 'taglib'
+require 'time'
 
 module PodcastPress
   # This class wraps the functionality of an ID3 tag from taglib-ruby
@@ -13,6 +14,7 @@ module PodcastPress
       set_artist(params.artist)
       set_artwork(params.artwork)
       set_album(params.podcast_title)
+      set_release_date(params.date)
     end
 
     # Setting a nil values causes a segfaults and other errors in the talib library
@@ -43,6 +45,24 @@ module PodcastPress
 
     def set_album(album)
       @raw_tag.album = album if album
+    end
+
+    def set_release_date(date_input)
+      return false unless date_input
+
+      if date_input.is_a? String
+        date = Time.parse(date_input).strftime('%Y-%m-%d')
+      elsif date_input.is_a? Time
+        date = date_input.strftime('%Y-%m-%d')
+      else
+        raise "Don't konw how to handle given time: #{date}"
+      end
+
+      @raw_tag.remove_frames('TDRL')
+      frame = TagLib::ID3v2::TextIdentificationFrame.new('TDRL', TagLib::String::UTF8)
+      frame.text = date
+      @raw_tag.add_frame(frame)
+      @raw_tag.year = date.split('-').first.to_i
     end
   end
 end
