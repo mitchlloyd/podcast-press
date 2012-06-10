@@ -13,8 +13,7 @@ module PodcastPress
   end
 
   def self.load_config
-    Config.load
-    return @configuration.to_h
+    Config.get
   end
 
   # This method is called in the configuration file.

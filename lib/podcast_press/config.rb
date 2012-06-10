@@ -6,17 +6,29 @@ module PodcastPress
       @store = {}
     end
 
-    # TODO: Some meta prgramming to make this work for everything.
-    def title(value)
-      @store[:title] = value
+    def self.get
+      @instance = self.new()
+
+      if File.exist?(CONFIG_FILE)
+        # In this config file, users will call #set to set their defaults.
+        @instance.instance_eval File.read(CONFIG_FILE), CONFIG_FILE, 1
+      else
+        raise "Couldn't find #{CONFIG_FILE} in #{Dir.pwd}."
+      end
+
+      @instance.to_h
+    end
+
+    # In the config file, users will do things like:
+    #
+    #   set title: 'My Title'
+    #
+    def set(setting)
+      @store.merge!(setting)
     end
 
     def to_h
       @store
-    end
-
-    def self.load
-      require CONFIG_FILE if File.exist?(CONFIG_FILE)
     end
   end
 end
