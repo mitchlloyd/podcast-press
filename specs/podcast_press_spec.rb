@@ -5,7 +5,8 @@ require 'taglib'
 require './specs/spec_helpers'
 require 'podcast_press'
 
-FILENAME = './sandbox/test_file.mp3'
+SANDBOX = './specs/sandbox/'
+FILENAME = './specs/sandbox/test_file.mp3'
 MP3_FIXTURE = './specs/fixtures/sine.mp3'
 
 describe PodcastPress do
@@ -72,10 +73,10 @@ describe PodcastPress do
       @episode = PodcastPress.press!(@file.path, filename: 'new_file_name.mp3')
     end
 
-    after { @file = File.new('./sandbox/new_file_name.mp3') }
+    after { @file = File.new("#{SANDBOX}/new_file_name.mp3") }
 
     it "renames the file" do
-      File.exist?('./sandbox/new_file_name.mp3').must_equal true
+      File.exist?("#{SANDBOX}/new_file_name.mp3").must_equal true
     end
   end
 
