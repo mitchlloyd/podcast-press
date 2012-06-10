@@ -15,6 +15,13 @@ module PodcastPress
       end
     end
 
+    def set_frames(params)
+      set_title(params.title)
+      set_track(params.episode_number)
+      set_artist(params.artist)
+      set_artwork(params.artwork)
+      set_album(params.podcast_title)
+    end
 
     # Setting a nil values causes a segfaults and other errors in the talib library
     # so we must be careful not to set nil values in tags in setter methods.
@@ -40,6 +47,10 @@ module PodcastPress
 
     def set_artist(artist)
       @raw_tag.artist = artist if artist
+    end
+
+    def set_album(album)
+      @raw_tag.album = album if album
     end
   end
 end

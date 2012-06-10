@@ -20,7 +20,7 @@ command :press do |c|
 
     PodcastPress.press!(args[0], {
       episode_number: episode_number,
-      episode: episode_title
+      title: episode_title
     })
   end
 end

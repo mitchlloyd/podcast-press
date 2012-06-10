@@ -7,7 +7,7 @@ module PodcastPress
   class AudioFile
     extend Forwardable
 
-    def_delegators :@params, :title
+    def_delegators :@params, :title, :podcast_title
 
     def initialize(filename)
       @filename = filename
@@ -27,11 +27,7 @@ module PodcastPress
         tag = Tag.new(file.id3v2_tag)
 
         tag.clear_frames if @params.clear
-
-        tag.set_title(@params.title)
-        tag.set_track(@params.episode_number)
-        tag.set_artist(@params.artist)
-        tag.set_artwork(@params.artwork)
+        tag.set_frames(@params)
 
         file.save
       end

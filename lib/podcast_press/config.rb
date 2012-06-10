@@ -13,7 +13,7 @@ module PodcastPress
         # In this config file, users will call #set to set their defaults.
         @instance.instance_eval File.read(CONFIG_FILE), CONFIG_FILE, 1
       else
-        raise "Couldn't find #{CONFIG_FILE} in #{Dir.pwd}."
+        # puts "WARNING: Couldn't find #{CONFIG_FILE} in #{Dir.pwd}."
       end
 
       @instance.to_h

@@ -77,6 +77,20 @@ describe PodcastPress do
     end
   end
 
+  describe "when #press! is called with podcast_title" do
+    before do
+      @episode = PodcastPress.press!(@file.path, podcast_title: 'My Podcast')
+    end
+
+    it "returns the podcast title" do
+      @episode.podcast_title.must_equal 'My Podcast'
+    end
+
+    it "sets the album tag" do
+      tag_assertion(@file.path, 'TALB', 'My Podcast')
+    end
+  end
+
   describe "when #press! is called with filename" do
     before do
       @episode = PodcastPress.press!(@file.path, filename: 'new_file_name.mp3')

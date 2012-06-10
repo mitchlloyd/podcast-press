@@ -1,0 +1,19 @@
+PATH
+  remote: ../..
+  specs:
+    podcast_press (0.0.1)
+      commander (~> 4.1.2)
+      taglib-ruby (~> 0.5.0)
+
+GEM
+  specs:
+    commander (4.1.2)
+      highline (~> 1.6.11)
+    highline (1.6.12)
+    taglib-ruby (0.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  podcast_press!
