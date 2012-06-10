@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = PodcastPress::VERSION
 
   gem.add_dependency "taglib-ruby", "~> 0.5.0"
+  gem.add_dependency "commander", "~> 4.1.2"
 
   gem.add_development_dependency "debugger"
 end

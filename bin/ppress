@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'commander/import'
+
+require 'podcast_press'
+
+program :name, 'Podcast Press'
+program :version, '0.0.1'
+program :description, 'Command line interface to help with podcast publishing.'
+
+default_command :press
+
+command :press do |c|
+  c.syntax = 'press file_name'
+  c.description = 'Tags, renames, and ships a podcast mp3 file.'
+  c.action do |args, options|
+    episode_number = ask 'Episode Number: '
+    episode_title  = ask 'Episode Title:  '
+    say "Shipping episode #{episode_number}, #{episode_title}..."
+
+    PodcastPress.press!(args[0], {
+      episode_number: episode_number,
+      episode: episode_title
+    })
+  end
+end
