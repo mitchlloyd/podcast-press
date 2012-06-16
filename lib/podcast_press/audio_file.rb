@@ -22,8 +22,7 @@ module PodcastPress
 
       TagLib::MPEG::File.open(@filename) do |file|
         if @params.clear
-          file.strip(TagLib::MPEG::File::ID3v2)
-          file.strip(TagLib::MPEG::File::ID3v1)
+          file.strip(TagLib::MPEG::File::ID3v2 | TagLib::MPEG::File::ID3v1)
         end
 
         tag = Tag.new(file.id3v2_tag(true))
