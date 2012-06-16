@@ -38,12 +38,8 @@ module PodcastPress
       File.rename(@filename, File.join(dir, new_filename))
     end
 
-    def episode_number(options={})
-      if (padding_amount = options[:padding])
-        "%0#{padding_amount}d" % @params.episode_number
-      else
-        @params.episode_number.to_i.to_s
-      end
+    def episode_number
+      @params.episode_number.to_i.to_s
     end
 
     def size

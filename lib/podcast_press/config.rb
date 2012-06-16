@@ -27,8 +27,14 @@ module PodcastPress
       @store.merge!(setting)
     end
 
-    def get(setting)
-      @store[setting]
+    # Get a previously set value from config.
+    def get(setting, options={})
+      # Passing :min_digits as an option will pad a number with zeros.
+      if options[:min_digits] and @store[setting].to_s.match(/^\d+$/)
+        "%0#{options[:min_digits]}d" % @store[setting]
+      else
+        @store[setting]
+      end
     end
 
     def to_h

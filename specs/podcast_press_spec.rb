@@ -38,10 +38,6 @@ describe PodcastPress do
       @episode = PodcastPress.press!(@file.path, episode_number: 1)
     end
 
-    it "returns the episode_number with padding" do
-      @episode.episode_number(padding: 3).must_equal '001'
-    end
-
     it "sets the track number tag" do
       tag_assertion(@file.path, 'TRCK', '1')
     end
