@@ -1,7 +1,7 @@
 Podcast Press
 =============
 
-You've mixed down your podcast, but you're not done. This library helps you automate all the busywork needed to take your audio from a shivering mp3 file to a awe-inspiring episode:
+You've mixed down your podcast, but you're not done. This library automates all the busywork needed to take your audio from a shivering mp3 file to a awe-inspiring episode:
 
   * Rename the file according to your convention
   * Tag the file with id3 tags for iTunes and other audio players
@@ -13,8 +13,40 @@ You've mixed down your podcast, but you're not done. This library helps you auto
 **Development Status:** _Partially usable but incomplete_
 
 
-Usage
------
+Using as a Command Line Tool
+----------------------------
+
+Setup a config file called podcast_press_config.rb
+
+```ruby
+set podcast_title: 'Eric & Mitch Explain'
+set artist: "Eric & Mitch"
+set artwork: "./source/images/eme-artwork.jpg"
+set date: Time.now
+set title: "Eric & Mitch Explain ##{get :episode_number}: #{get :title}"
+set filename: "eric&mitch-#{get :episode_number, min_digits: 3}.mp3"
+set clear: true
+```
+
+Then run the command line utility:
+
+`ppress podcast-mixdown.mp3`
+
+After you enter the episode number (2) and the title (Techno Utopianism) you'll get the following:
+
+* ID3 title tag: "Eric & Mitch Explain #2: Techno Utopianism"
+* ID3 artist tag: "Eric & Mitch"
+* ID3 album tag: "Eric & Mitch Explain"
+* ID3 genre tag: "Podcast"
+* ID3 date/year tag: 2012
+* ID3 track number: 2
+* Embedded artwork file "eme-artwork.jpg"
+* File renamed to "eric&mitch-002.mp3"
+* Any previsously set tags cleared (due to the `clear: true` setting)
+
+
+Using as a Library
+------------------
 
 ```ruby
 episode = PodcastPress.press!('file_path', {
