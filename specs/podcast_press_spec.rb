@@ -99,6 +99,16 @@ describe PodcastPress do
     end
   end
 
+  describe "when #press! is called with an empty hash" do
+    before do
+       @episode = PodcastPress.press!(@file.path, {})
+    end
+
+    it "sets the genre tag to Podcast" do
+      tag_assertion(@file.path, 'TCON', 'Podcast')
+    end
+  end
+
 
   ### Specs for setting dates ###
 

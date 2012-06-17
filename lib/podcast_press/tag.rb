@@ -16,6 +16,7 @@ module PodcastPress
       set_artwork(params.artwork)
       set_album(params.podcast_title)
       set_release_date(params.date)
+      set_genre(params.genre)
     end
 
     # Setting a nil values causes a segfaults and other errors in the talib library
@@ -64,6 +65,10 @@ module PodcastPress
       frame.text = date
       @raw_tag.add_frame(frame)
       @raw_tag.year = date.split('-').first.to_i
+    end
+
+    def set_genre(genre)
+      @raw_tag.genre = genre || 'Podcast'
     end
   end
 end

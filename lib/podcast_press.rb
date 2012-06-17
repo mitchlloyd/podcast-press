@@ -3,15 +3,15 @@ require 'podcast_press/config'
 
 module PodcastPress
   def self.press!(filename, params={})
-    params = load_config.merge(params)
+    params = load_config(params)
     audio_file = AudioFile.new(filename)
     audio_file.tag!(params)
     audio_file.rename!(params[:filename])
     return audio_file
   end
 
-  def self.load_config
-    Config.get
+  def self.load_config(params)
+    Config.get(params)
   end
 
   # This method is called in the configuration file.
