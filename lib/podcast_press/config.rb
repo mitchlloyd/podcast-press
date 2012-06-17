@@ -6,8 +6,11 @@ module PodcastPress
       @store = {}
     end
 
-    def self.get
+    def self.get(preset_params={})
       @instance = self.new()
+
+      # Set the preset_params so that they are available in the config file.
+      preset_params.each {|k,v| @instance.set(k, v)}
 
       if File.exist?(CONFIG_FILE)
         # In this config file, users will call #set to set their defaults.
@@ -23,8 +26,16 @@ module PodcastPress
     #
     #   set title: 'My Title'
     #
-    def set(setting)
-      @store.merge!(setting)
+    #     or
+    #
+    #   set :title, "My Title"
+    #
+    def set(setting, value=nil)
+      if setting.is_a? Hash
+        @store.merge!(setting)
+      else
+        @store[setting] = value
+      end
     end
 
     # Get a previously set value from config.

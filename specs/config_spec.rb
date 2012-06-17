@@ -44,4 +44,18 @@ describe PodcastPress::Config do
       PodcastPress::Config.get[:title].must_equal '003'
     end
   end
+
+  describe "calling #get with a hash of existing settings" do
+    before do
+      File.open(CONFIG_FILE, 'w') do |f|
+        f << %q{set title: "#{get :predefined}"}
+      end
+
+      @settings = PodcastPress::Config.get(predefined: 'pre-defined value')
+    end
+
+    it "lets users get those settings in the config file" do
+      @settings[:title].must_equal 'pre-defined value'
+    end
+  end
 end
