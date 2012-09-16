@@ -4,9 +4,9 @@ require File.expand_path('../lib/podcast_press/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Mitch Lloyd"]
   gem.email         = ["mitch.lloyd@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = "ID3-ify your podcast episodes"
+  gem.summary       = "Appy ID3 tags to your podcast episodes"
+  gem.homepage      = "https://github.com/mitchlloyd/podcast-press"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
