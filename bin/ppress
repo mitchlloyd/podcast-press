@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'commander/import'
+require 'dotenv'
+Dotenv.load
 
-require 'podcast_press'
+require_relative '../lib/podcast_press'
 
 program :name, 'Podcast Press'
-program :version, '0.0.1'
+program :version, '0.0.2'
 program :description, 'Command line interface to help with podcast publishing.'
 
 default_command :press

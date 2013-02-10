@@ -1,6 +1,6 @@
-require 'podcast_press/audio_file'
-require 'podcast_press/uploader'
-require 'podcast_press/config'
+require_relative './podcast_press/audio_file'
+require_relative './podcast_press/uploader'
+require_relative './podcast_press/config'
 
 module PodcastPress
   def self.press!(filename, params={})

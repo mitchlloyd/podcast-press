@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "taglib-ruby", "~> 0.5.0"
   gem.add_dependency "commander", "~> 4.1.2"
   gem.add_dependency "aws-s3", "~> 0.6.3"
+  gem.add_dependency "dotenv", "~> 0.5.0"
 
   gem.add_development_dependency "debugger"
   gem.add_development_dependency "minitest-reporters"

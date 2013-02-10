@@ -4,3 +4,4 @@ set artwork: "./artwork.jpg"
 set clear: true
 set date: Time.now
 set filename: "#{get :podcast_title} #{get :episode_number, padding: 3} - #{get :episode_title}.mp3"
+set s3_bucket: "gaslight-podcasts"

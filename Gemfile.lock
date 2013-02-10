@@ -4,6 +4,7 @@ PATH
     podcast_press (0.0.1)
       aws-s3 (~> 0.6.3)
       commander (~> 4.1.2)
+      dotenv (~> 0.5.0)
       taglib-ruby (~> 0.5.0)
 
 GEM
@@ -25,6 +26,7 @@ GEM
     debugger-linecache (1.1.1)
       debugger-ruby_core_source (>= 1.1.1)
     debugger-ruby_core_source (1.1.2)
+    dotenv (0.5.0)
     hashie (1.2.0)
     highline (1.6.15)
     mime-types (1.21)
