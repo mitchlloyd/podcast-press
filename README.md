@@ -23,7 +23,7 @@ set date: Time.now
 set title: "Eric & Mitch Explain ##{get :episode_number}: #{get :title}"
 set filename: "eric&mitch-#{get :episode_number, min_digits: 3}.mp3"
 set clear: true
-set s3_bucket: my-s3-bucket-name
+set s3_bucket: "my-s3-bucket-name"
 ```
 
 Then run the command line utility:
