@@ -7,10 +7,7 @@ You've mixed down your podcast, but you're not done. This library automates all 
   * Tag the file with id3 tags for iTunes and other audio players
   * Embed your artwork into the file
   * Get size and runtime values for your RSS feed
-  * _Planned_ - Upload your file to a host of your choice (e.g. S3, Dropbox)
-
-
-**Development Status:** _Partially usable but incomplete_
+  * Upload your file to Amazon's S3
 
 
 Using as a Command Line Tool
@@ -26,6 +23,7 @@ set date: Time.now
 set title: "Eric & Mitch Explain ##{get :episode_number}: #{get :title}"
 set filename: "eric&mitch-#{get :episode_number, min_digits: 3}.mp3"
 set clear: true
+set s3_bucket: my-s3-bucket-name
 ```
 
 Then run the command line utility:
@@ -43,6 +41,7 @@ After you enter the episode number (2) and the title (Techno Utopianism) you'll 
 * Embedded artwork file "eme-artwork.jpg"
 * File renamed to "eric&mitch-002.mp3"
 * Any previsously set tags cleared (due to the `clear: true` setting)
+* File uploaded to S3 and made publicly readable
 
 
 Using as a Library
@@ -66,5 +65,4 @@ episode = PodcastPress.press!('file_path', {
 
 episode.size     # => 1234567
 episode.runtime  # => "00:54:08"
-episode.url      # => (planned) "http://dl.dropbox.com/234jsdkfdjsf/my-podcast-001-getting-serious-001.mp3"
 ```
