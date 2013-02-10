@@ -1,6 +1,6 @@
-CONFIG_FILE = './podcast_press_config.rb'
-
 module PodcastPress
+  CONFIG_FILE = './podcast_press_config.rb'
+
   class Config
     def initialize
       @store = {}

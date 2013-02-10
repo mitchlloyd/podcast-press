@@ -19,4 +19,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency "commander", "~> 4.1.2"
 
   gem.add_development_dependency "debugger"
+  gem.add_development_dependency "minitest-reporters"
 end

@@ -1,9 +1,9 @@
 require 'minitest/autorun'
 require 'podcast_press/config'
 
-CONFIG_FILE = 'podcast_press_config.rb'
-
 describe PodcastPress::Config do
+  CONFIG_FILE = 'podcast_press_config.rb'
+
   describe "when a property is set" do
     before do
       File.open(CONFIG_FILE, 'w') {|f| f << "set title: 'Hello'"}

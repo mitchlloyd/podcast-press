@@ -8,6 +8,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    ansi (1.4.3)
+    builder (3.1.4)
     columnize (0.3.1)
     commander (4.1.2)
       highline (~> 1.6.11)
@@ -18,7 +20,17 @@ GEM
     debugger-linecache (1.1.1)
       debugger-ruby_core_source (>= 1.1.1)
     debugger-ruby_core_source (1.1.2)
+    hashie (1.2.0)
     highline (1.6.12)
+    minitest (4.6.0)
+    minitest-reporters (0.14.7)
+      ansi
+      builder
+      minitest (>= 2.12, < 5.0)
+      powerbar
+    powerbar (1.0.11)
+      ansi (~> 1.4.0)
+      hashie (>= 1.1.0)
     taglib-ruby (0.5.0)
 
 PLATFORMS
@@ -26,4 +38,5 @@ PLATFORMS
 
 DEPENDENCIES
   debugger
+  minitest-reporters
   podcast_press!

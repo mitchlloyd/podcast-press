@@ -1,12 +1,4 @@
-require 'minitest/autorun'
-require 'taglib'
-
-require './specs/spec_helpers'
-require 'podcast_press'
-
-SANDBOX = './specs/sandbox'
-FILENAME = './specs/sandbox/test_file.mp3'
-MP3_FIXTURE = './specs/fixtures/sine.mp3'
+require_relative './spec_setup'
 
 describe PodcastPress do
   include SpecHelpers
