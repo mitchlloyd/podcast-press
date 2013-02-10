@@ -1,10 +1,11 @@
 require 'taglib'
 require 'ostruct'
 require 'forwardable'
-require 'podcast_press/tag'
+require_relative './tag'
 
 module PodcastPress
   class AudioFile
+    attr_reader :filename
     extend Forwardable
 
     def_delegators :@params, :title, :podcast_title, :date
@@ -36,6 +37,7 @@ module PodcastPress
 
       dir = File.dirname(@filename)
       File.rename(@filename, File.join(dir, new_filename))
+      @filename = new_filename
     end
 
     def upload!(s3_bucket)

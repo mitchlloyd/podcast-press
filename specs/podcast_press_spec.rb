@@ -89,6 +89,10 @@ describe PodcastPress do
     it "renames the file" do
       File.exist?("#{SANDBOX}/new_file_name.mp3").must_equal true
     end
+
+    it "sets the filename to the new file" do
+      @episode.filename.must_equal 'new_file_name.mp3'
+    end
   end
 
   describe "when #press! is called with an empty hash" do
