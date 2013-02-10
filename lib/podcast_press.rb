@@ -1,4 +1,5 @@
 require 'podcast_press/audio_file'
+require 'podcast_press/uploader'
 require 'podcast_press/config'
 
 module PodcastPress
@@ -7,6 +8,7 @@ module PodcastPress
     audio_file = AudioFile.new(filename)
     audio_file.tag!(params)
     audio_file.rename!(params[:filename])
+    audio_file.upload!(params[:s3_bucket])
     return audio_file
   end
 

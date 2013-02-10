@@ -38,6 +38,11 @@ module PodcastPress
       File.rename(@filename, File.join(dir, new_filename))
     end
 
+    def upload!(s3_bucket)
+      return unless s3_bucket
+      Uploader.new(s3_bucket).upload(@filename)
+    end
+
     def episode_number
       @params.episode_number.to_i.to_s
     end
