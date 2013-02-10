@@ -15,7 +15,7 @@ describe PodcastPress do
     before do
       ENV['AMAZON_ACCESS_KEY_ID'] = 'abc'
       ENV['AMAZON_SECRET_ACCESS_KEY'] = '123'
-      PodcastPress.press!(@file.path, s3_bucket: 'test_bucket')
+      @episode = PodcastPress.press!(@file.path, s3_bucket: 'test_bucket')
     end
 
     it "makes a connection to s3" do
@@ -31,6 +31,12 @@ describe PodcastPress do
       args[1].must_be_kind_of File
       args[2].must_equal 'test_bucket'
       args[3].must_equal({ access: :public_read })
+    end
+
+    it "returns an episode with a URL" do
+      @episode.url.must_equal(
+        "https://s3.amazonaws.com/test_bucket/test_file.mp3"
+      )
     end
   end
 end

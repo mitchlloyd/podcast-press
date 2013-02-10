@@ -13,11 +13,17 @@ class Uploader
   end
 
   def upload(file_path)
+    file_name = File.basename(file_path)
     AWS::S3::S3Object.store(
-      File.basename(file_path),
+      file_name,
       open(file_path),
       bucket_name,
       access: :public_read
     )
+    url(file_name)
+  end
+
+  def url(file_name)
+    "https://s3.amazonaws.com/#{bucket_name}/#{file_name}"
   end
 end

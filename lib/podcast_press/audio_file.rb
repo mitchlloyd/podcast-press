@@ -5,7 +5,7 @@ require_relative './tag'
 
 module PodcastPress
   class AudioFile
-    attr_reader :filename
+    attr_accessor :filename, :url
     extend Forwardable
 
     def_delegators :@params, :title, :podcast_title, :date
@@ -42,7 +42,7 @@ module PodcastPress
 
     def upload!(s3_bucket)
       return unless s3_bucket
-      Uploader.new(s3_bucket).upload(@filename)
+      self.url = Uploader.new(s3_bucket).upload(@filename)
     end
 
     def episode_number

@@ -20,9 +20,11 @@ command :press do |c|
     episode_title  = ask 'Episode Title:  '
     say "Shipping episode #{episode_number}, #{episode_title}..."
 
-    PodcastPress.press!(args[0], {
+    episode = PodcastPress.press!(args[0], {
       episode_number: episode_number,
       title: episode_title
     })
+
+    say "Your episode URL is:\n  #{episode.url}\n" if episode.url
   end
 end
